@@ -40,13 +40,18 @@ const AuthController = (app) => {
         res.sendStatus(200);
     };
 
-    const update   = (req, res) => { };
+    const updateUser = (req, res) => {
+        const userId = req.params['uid']
+        const updates = req.body
+        usersDao.updateUser(userId, updates);
+        res.sendStatus(200)
+    }
 
 
     app.post("/api/users/register", register);
-    app.post("/api/users/login",    login);
-    app.post("/api/users/profile",  profile);
-    app.post("/api/users/logout",   logout);
-    app.put ("/api/users",          update);
+    app.post("/api/users/login", login);
+    app.post("/api/users/profile", profile);
+    app.post("/api/users/logout", logout);
+    app.put("/api/users/:uid", updateUser);
 };
 export default AuthController;
