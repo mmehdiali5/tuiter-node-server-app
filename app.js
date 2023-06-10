@@ -16,7 +16,7 @@ app.use(
 );
 app.use(cors({
         credentials: true,
-        origin: ["http://localhost:3000","https://tuiter-node-server-app-xs1t.onrender.com/"],
+        origin: ["http://localhost:3000","https://a5--strong-bombolone-81920a.netlify.app"],
     })
 )
 app.use(express.json())
