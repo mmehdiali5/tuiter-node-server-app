@@ -7,13 +7,16 @@ import session from "express-session";
 import AuthController from "./users/auth-controller.js";
 
 const app = express()
+
 app.use(
     session({
         secret: "any string",
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: true
     })
 );
+
+
 app.use(cors({
         credentials: true,
         origin: ["http://localhost:3000","https://a5--strong-bombolone-81920a.netlify.app"],
