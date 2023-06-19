@@ -14,7 +14,7 @@ mongoose.connect(CONNECTION_STRING);
 const MongoDBStore = MongoDBStoreFactory(session);
 const app = express()
 
-/*app.use(
+app.use(
     session({
         secret: "any string",
         resave: false,
@@ -24,9 +24,21 @@ const app = express()
             collection: 'sessions'
         })
     })
+);
+
+/*app.use(
+    session({
+        secret: "any string",
+        resave: false,
+        saveUninitialized: true,
+        cookie:{
+            sameSite: "none",
+            secure: true
+        }
+    })
 );*/
 
-app.use(
+/*app.use(
     session({
         secret: "any string",
         resave: false,
@@ -37,7 +49,7 @@ app.use(
             secure: true
         }
     })
-);
+);*/
 
 app.use(cors({
         credentials: true,
