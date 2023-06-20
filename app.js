@@ -44,6 +44,10 @@ app.use(
         resave: false,
         proxy: true,
         saveUninitialized: false,
+        store: new MongoDBStore({
+            uri: CONNECTION_STRING,
+            collection: 'sessions'
+        }),
         cookie:{
             sameSite: "none",
             secure: true
