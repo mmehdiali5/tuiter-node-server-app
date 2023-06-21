@@ -14,7 +14,7 @@ mongoose.connect(CONNECTION_STRING);
 const MongoDBStore = MongoDBStoreFactory(session);
 const app = express()
 
-/*app.use(
+app.use(
     session({
         secret: "any string",
         resave: false,
@@ -23,15 +23,6 @@ const app = express()
             uri: CONNECTION_STRING,
             collection: 'sessions'
         })
-    })
-);*/
-
-//app.set(‘trust proxy’, 1)
-app.use(
-    session({
-        secret: "any string",
-        resave: false,
-        saveUninitialized: true,
     })
 );
 
