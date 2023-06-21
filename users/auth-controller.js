@@ -1,6 +1,6 @@
 import * as usersDao from "./users-dao.js";
 
-let currentUserGlobal = null;
+//let currentUserGlobal = null;
 const AuthController = (app) => {
     const register = async (req, res) => {
         const user = await usersDao.findUserByUsername(req.body.username);
@@ -9,8 +9,8 @@ const AuthController = (app) => {
             return;
         }
         const newUser = await usersDao.createUser(req.body);
-        //req.session["currentUser"] = newUser;
-        currentUserGlobal = newUser;
+        req.session["currentUser"] = newUser;
+        //currentUserGlobal = newUser;
         res.json(newUser);
 
     };
@@ -22,8 +22,8 @@ const AuthController = (app) => {
         if (username && password) {
             const user = await usersDao.findUserByCredentials(username, password);
             if (user) {
-                //req.session["currentUser"] = user;
-                currentUserGlobal = user;
+                req.session["currentUser"] = user;
+                //currentUserGlobal = user;
                 res.json(user);
             } else {
                 res.sendStatus(403);
@@ -35,8 +35,8 @@ const AuthController = (app) => {
 
 
     const profile = (req, res) => {
-        //const currentUser = req.session["currentUser"];
-        const currentUser = currentUserGlobal
+        const currentUser = req.session["currentUser"];
+       // const currentUser = currentUserGlobal
         if (!currentUser) {
             res.sendStatus(500);
             return;
@@ -45,8 +45,8 @@ const AuthController = (app) => {
     };
 
     const logout = async (req, res) => {
-        //req.session.destroy();
-        currentUserGlobal=null;
+        req.session.destroy();
+        //currentUserGlobal=null;
         res.sendStatus(200);
     };
 
